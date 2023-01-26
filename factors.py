@@ -1,11 +1,14 @@
 #!/usr/bin/python3
+import math
 
 def print_factors(number):
-    for num in range(2, number // 2):
-        if (number % num == 0):
-            fct = number // num
-            print("{:d}={:d}*{:d}".format(number, fct, num))
+    i = 1
+    while i * i <= number:
+        if (number % i == 0):
+            fct = number // i
+            print("{:d}={:d}*{:d}".format(number, fct, i))
             break
+        i += 1
 
 
 def main():

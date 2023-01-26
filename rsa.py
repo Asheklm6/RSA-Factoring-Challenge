@@ -1,22 +1,46 @@
 #!/usr/bin/python3
 
-def check_prime(number):
-    if number == 2:
-        return True
-    for num in range(2, number // 2):
-        if number % num == 0:
-            return False
-    return True
-        
+import random
+import math
+
+def modular_pow(base, exponent, modulus):
+    result = 1
+    while (exponent > 0):
+        if (exponent % 2 != 0):
+            result = (result * base) % modulus
+        exponent = int(exponent / 2)
+        base = (base * base) % modulus
+    return result
+
+
+def prime_divisor(n):
+    if (n == 1):
+        return n
+    if (n % 2 == 0):
+        return 2
+
+    x = (random.randint(0, 2) % (n - 2))
+    y = x
+    c = (random.randint(0, 1) % (n - 1))
+
+    d = 1
+    while (d == 1):
+        x = (modular_pow(x, 2, n) + c + n) % n
+
+        y = (modular_pow(y, 2, n) + c + n) % n
+        y = (modular_pow(y, 2, n) + c + n) % n
+
+        d = math.gcd(abs(x - y), n)
+
+        if (d == n):
+            return prime_divisor(n)
+    return d
+
 
 def print_factors(number):
-    for num in range(2, number):
-        if (number % num == 0):
-            if (check_prime(num)):
-                fct = number // num
-                if (check_prime(fct)):
-                    print("{:d}={:d}*{:d}".format(number, fct, num))
-                    break
+    div = prime_divisor(number)
+    num = int(number / div)
+    print("{:d}={:d}*{:d}".format(number, div, num))
 
 
 def main():
