@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 def print_factors(number):
-    for num in range(2, number):
+    for num in range(2, number // 2):
         if (number % num == 0):
             fct = number // num
             print("{:d}={:d}*{:d}".format(number, fct, num))
@@ -26,6 +26,8 @@ def main():
                 break
             line = int(line)
             print_factors(line)
+
+    f.close()
 
 
 main()
