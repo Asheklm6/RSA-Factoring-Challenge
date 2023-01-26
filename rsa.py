@@ -40,7 +40,11 @@ def prime_divisor(n):
 def print_factors(number):
     div = prime_divisor(number)
     num = int(number / div)
-    print("{:d}={:d}*{:d}".format(number, div, num))
+    if div >= num:
+        print("{:d}={:d}*{:d}".format(number, div, num))
+    else:
+        print("{:d}={:d}*{:d}".format(number, num, div))
+        
 
 
 def main():
@@ -61,6 +65,8 @@ def main():
                 break
             line = int(line)
             print_factors(line)
+    
+    f.close()
 
 
 main()
