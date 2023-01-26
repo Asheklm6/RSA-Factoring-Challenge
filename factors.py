@@ -25,7 +25,7 @@ def main():
             if (not line):
                 break
             line = int(line)
-            if line > 1000000000:
+            if line > 100000000000000:
                 continue
             print_factors(line)
 
